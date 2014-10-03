@@ -2,5 +2,6 @@
 <resources>
     <string name="hello">Hello World, TestLayerActivity!</string>
     <string name="app_name">TestLayer</string>
-    <string name="text">TestLayer</string>
+    
+     <string name="location_description">Location Button</string>
 </resources>
