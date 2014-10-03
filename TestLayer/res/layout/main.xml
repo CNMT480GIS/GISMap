@@ -7,11 +7,13 @@
     tools:context=".TestLayerActivity"
     >
 
-    <Button
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location" />
+    <ImageButton
+    android:id="@+id/location"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_location"
+    android:contentDescription="@string/location_description"
+     />
     
       <com.esri.android.map.MapView
     android:id="@+id/map"
@@ -19,5 +21,5 @@
     android:layout_height="fill_parent"
     mapoptions.MapType="SATELlITE"
     mapoptions.center="44.536645, -89.609470"
-    mapoptions.ZoomLevel="18" />
+    mapoptions.ZoomLevel="14" />
 </LinearLayout>

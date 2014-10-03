@@ -15,6 +15,8 @@ package edu.uwsp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 
 import com.esri.android.map.Layer;
@@ -48,10 +50,27 @@ public class TestLayerActivity extends Activity {
      		ArcGISDynamicMapServiceLayer sp_FlowageLayer = new ArcGISDynamicMapServiceLayer(STEVENS_POINT_FLOWAGE_URL);		
      		map.addLayer(sp_FlowageLayer);
      		
-     		//Create a button for geolocation rather
+     		//Create a button for geolocation
+     		Button location = (Button) findViewById(R.id.location);
+            location.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                	LocationDisplayManager ls = map.getLocationDisplayManager();
+ 					ls.getAutoPanMode();
+ 					ls.start();
+ 					try {
+ 						ls.getLocationAcquiringSymbol();
+ 					} catch (Exception e) {
+ 						// TODO Auto-generated catch block
+ 						e.printStackTrace();
+ 					}
+ 					ls.getPoint();
+ 					ls.isAllowNetworkLocation();
+                }
+            });
+
      		
      		
-     		//create onStatus change listener to use Location Display manager on
+     		/*create onStatus change listener to use Location Display manager on
      		map.setOnStatusChangedListener(new OnStatusChangedListener() {
      			public void onStatusChanged(Object source, STATUS status) {
      				if (source == map && status == STATUS.INITIALIZED) {
@@ -69,7 +88,7 @@ public class TestLayerActivity extends Activity {
      					
      				}
      			}
-     		});		
+     		});		*/
     }
 
 	@Override
