@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 import com.esri.android.map.Layer;
@@ -47,11 +48,11 @@ public class TestLayerActivity extends Activity {
      // Retrieve the map from XML layout
      		map = (MapView) findViewById(R.id.map);
      	// Add dynamic layer to MapView
-     		ArcGISDynamicMapServiceLayer sp_FlowageLayer = new ArcGISDynamicMapServiceLayer(STEVENS_POINT_FLOWAGE_URL);		
-     		map.addLayer(sp_FlowageLayer);
+     		//ArcGISDynamicMapServiceLayer sp_FlowageLayer = new ArcGISDynamicMapServiceLayer(STEVENS_POINT_FLOWAGE_URL);		
+     		//map.addLayer(sp_FlowageLayer);
      		
      		//Create a button for geolocation
-     		Button location = (Button) findViewById(R.id.location);
+     		ImageButton location = (ImageButton) findViewById(R.id.location);
             location.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                 	LocationDisplayManager ls = map.getLocationDisplayManager();
