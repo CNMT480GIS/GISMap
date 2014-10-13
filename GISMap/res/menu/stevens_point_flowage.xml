@@ -2,7 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.gismap.StevensPointFlowage" >
-
+	
+     <item
+        android:id="@+id/action_addlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_addlayer"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_addLayer"/>
+    
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
