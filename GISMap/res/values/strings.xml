@@ -11,4 +11,5 @@
 	<string name="contours">Contours</string>
 	<string name="pois">POIs</string>
 	<string name="structures">Structures</string>
+	<color name="blue">#82b5ba</color>
 </resources>
