@@ -3,6 +3,7 @@ package com.example.gismap;
 import com.esri.android.map.LocationDisplayManager;
 import com.esri.android.map.LocationDisplayManager.AutoPanMode;
 import com.esri.android.map.MapView;
+import com.esri.android.map.ags.ArcGISDynamicMapServiceLayer;
 import com.esri.android.map.event.OnStatusChangedListener;
 
 import android.app.Activity;
@@ -16,8 +17,15 @@ import android.view.View;
 
 public class StevensPointFlowage extends Activity {
 	
+	//Map Object
 	MapView mapView;
+	
+	//Boolean array for layers
 	boolean[] layersChecked = new boolean[3];
+	
+	//Layers
+	String contoursURL = "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer";
+	ArcGISDynamicMapServiceLayer contoursLayer = new ArcGISDynamicMapServiceLayer(contoursURL);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +33,9 @@ public class StevensPointFlowage extends Activity {
 		setContentView(R.layout.activity_stevens_point_flowage);
 		
 		mapView = (MapView)findViewById(R.id.map);
+		contoursLayer.setVisible(false);
+		mapView.addLayer(contoursLayer);
+		
 		
 		//mapView.addLayer(new ArcGISDynamicMapServiceLayer(""+
 		//"http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"));
@@ -87,6 +98,14 @@ public class StevensPointFlowage extends Activity {
 				int id = item.getItemId();
 				if(id == R.id.contours){
 					layersChecked[0]=item.isChecked();
+					if(item.isChecked())
+					{
+						contoursLayer.setVisible(true);
+					}
+					else
+					{
+						contoursLayer.setVisible(false);
+					}
 				}
 				if(id == R.id.pois){
 					layersChecked[1]=item.isChecked();
@@ -97,19 +116,20 @@ public class StevensPointFlowage extends Activity {
 				return false;
 			}
 		});
-		popup.show();
+		Menu popupMenu = popup.getMenu();
 		if(layersChecked[0]){
-			MenuItem item = (MenuItem) findViewById(R.id.contours);
+			MenuItem item = (MenuItem) popupMenu.findItem(R.id.contours);
 			item.setChecked(true);
 		}
 		if(layersChecked[1]){
-			MenuItem item = (MenuItem) findViewById(R.id.pois);
+			MenuItem item = (MenuItem) popupMenu.findItem(R.id.pois);
 			item.setChecked(true);
 		}
 		if(layersChecked[2]){
-			MenuItem item = (MenuItem) findViewById(R.id.structures);
+			MenuItem item = (MenuItem) popupMenu.findItem(R.id.structures);
 			item.setChecked(true);
 		}
+		popup.show();
 	}
 	
 }

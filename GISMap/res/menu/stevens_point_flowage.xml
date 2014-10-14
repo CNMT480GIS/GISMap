@@ -10,6 +10,22 @@
         android:icon="@drawable/ic_addlayer"
         android:showAsAction="ifRoom"
         android:title="@string/action_addLayer"/>
+     
+     <item
+         android:id="@+id/action_locate"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:icon="@drawable/ic_locate"
+         android:showAsAction="ifRoom"
+         android:title="@string/action_locate"/>
+     
+     <item
+         android:id="@+id/action_navigate"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:icon="@drawable/ic_navigate"
+         android:showAsAction="ifRoom"
+         android:title="@string/action_navigate"/>
     
     <item
         android:id="@+id/action_settings"

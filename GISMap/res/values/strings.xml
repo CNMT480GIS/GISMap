@@ -6,6 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_stevens_point_flowage">Stevens Point Flowage</string>
 	<string name="action_addLayer">Add Layer</string>
+	<string name="action_locate">Locate</string>
+	<string name="action_navigate">Navigate</string>
 	<string name="contours">Contours</string>
 	<string name="pois">POIs</string>
 	<string name="structures">Structures</string>

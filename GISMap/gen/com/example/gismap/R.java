@@ -1080,6 +1080,8 @@ containing a value of this type.
         public static final int greenplus=0x7f020057;
         public static final int ic_addlayer=0x7f020058;
         public static final int ic_launcher=0x7f020059;
+        public static final int ic_locate=0x7f02005a;
+        public static final int ic_navigate=0x7f02005b;
     }
     public static final class id {
         public static final int action_addlayer=0x7f050043;
@@ -1091,9 +1093,11 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f050023;
         public static final int action_bar_title=0x7f050022;
         public static final int action_context_bar=0x7f05001d;
+        public static final int action_locate=0x7f050044;
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
+        public static final int action_navigate=0x7f050045;
         public static final int action_settings=0x7f05003f;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
@@ -1253,12 +1257,14 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int action_addLayer=0x7f0a0011;
+        public static final int action_locate=0x7f0a0012;
+        public static final int action_navigate=0x7f0a0013;
         public static final int action_settings=0x7f0a000f;
         public static final int app_name=0x7f0a000d;
-        public static final int contours=0x7f0a0012;
+        public static final int contours=0x7f0a0014;
         public static final int hello_world=0x7f0a000e;
-        public static final int pois=0x7f0a0013;
-        public static final int structures=0x7f0a0014;
+        public static final int pois=0x7f0a0015;
+        public static final int structures=0x7f0a0016;
         public static final int title_activity_stevens_point_flowage=0x7f0a0010;
     }
     public static final class style {
