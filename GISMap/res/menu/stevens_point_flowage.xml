@@ -26,6 +26,14 @@
          android:icon="@drawable/ic_navigate"
          android:showAsAction="ifRoom"
          android:title="@string/action_navigate"/>
+     
+     <item 
+         android:id="@+id/action_information"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:icon="@drawable/ic_information"
+         android:showAsAction="ifRoom"
+         android:title="@string/action_information"/>
     
     <item
         android:id="@+id/action_settings"

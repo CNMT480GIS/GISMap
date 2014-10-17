@@ -39,10 +39,12 @@ public class MainActivity extends Activity {
     // Set the ArrayAdapter as the ListView's adapter.  
     mainListView.setAdapter( listAdapter );  
     
+    //Set the item click listener for the list view items
     mainListView.setOnItemClickListener(new OnItemClickListener(){
     	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
     		switch(position)
     		{
+    		//Create new Intent to move to Stevens Point Flowage screen
     		case 0: Intent newActivity = new Intent(MainActivity.this, StevensPointFlowage.class);
     		startActivity(newActivity);
     		break;
