@@ -20,7 +20,10 @@ public class MainActivity extends Activity {
   /** Called when the activity is first created. */  
   @Override  
   public void onCreate(Bundle savedInstanceState) {  
-    super.onCreate(savedInstanceState);  
+    
+	new EULA(this).show();
+	  
+	super.onCreate(savedInstanceState);  
     setContentView(R.layout.activity_main);  
       
     // Find the ListView resource.   
@@ -32,9 +35,8 @@ public class MainActivity extends Activity {
     ArrayList<String> waterbodyList = new ArrayList<String>();  
     waterbodyList.addAll( Arrays.asList(waterbodies) );  
       
-    // Create ArrayAdapter using the planet list.  
-    listAdapter = new ArrayAdapter<String>(this, R.layout.list_item, waterbodyList);  
-        
+    // Create ArrayAdapter using the waterbody list.  
+    listAdapter = new ArrayAdapter<String>(this, R.layout.list_item, waterbodyList);      
       
     // Set the ArrayAdapter as the ListView's adapter.  
     mainListView.setAdapter( listAdapter );  

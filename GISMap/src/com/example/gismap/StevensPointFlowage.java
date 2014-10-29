@@ -1,10 +1,10 @@
 package com.example.gismap;
 
 import com.esri.android.map.LocationDisplayManager;
-import com.esri.android.map.LocationDisplayManager.AutoPanMode;
 import com.esri.android.map.MapView;
 import com.esri.android.map.ags.ArcGISDynamicMapServiceLayer;
-import com.esri.android.map.event.OnStatusChangedListener;
+import com.esri.android.map.ags.ArcGISFeatureLayer;
+import com.esri.android.map.ags.ArcGISFeatureLayer.MODE;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,8 +25,14 @@ public class StevensPointFlowage extends Activity {
 	boolean[] layersChecked = new boolean[3];
 	
 	//Layers, Set up layers URLs and create layers objects
-	String contoursURL = "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer";
-	ArcGISDynamicMapServiceLayer contoursLayer = new ArcGISDynamicMapServiceLayer(contoursURL);
+	String contourLinesURL = "https://gissrv4.uwsp.edu/publisher/rest/services/SPFL_MapServer_trial3/MapServer/1";
+	ArcGISFeatureLayer contourLinesLayer = new ArcGISFeatureLayer(contourLinesURL, MODE.ONDEMAND);
+	
+	String shadedContoursURL = "https://gissrv4.uwsp.edu/publisher/rest/services/SPFL_MapServer_trial3/MapServer/2";
+	ArcGISFeatureLayer shadedContoursLayer = new ArcGISFeatureLayer(shadedContoursURL, MODE.ONDEMAND);
+	
+	String poisURL = "https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer/0";
+	ArcGISFeatureLayer poisLayer = new ArcGISFeatureLayer(poisURL, MODE.ONDEMAND);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +41,12 @@ public class StevensPointFlowage extends Activity {
 		
 		mapView = (MapView)findViewById(R.id.map);
 		//Add contours layer to map and set the initial value to invisible
-		contoursLayer.setVisible(false);
-		mapView.addLayer(contoursLayer);
-		
-		//Locate your device on map and auto update as moving
-		mapView.setOnStatusChangedListener(
-				new OnStatusChangedListener(){
-					public void onStatusChanged(Object source, STATUS status){
-						if(source == mapView && status == STATUS.INITIALIZED){
-							LocationDisplayManager ldm = mapView.getLocationDisplayManager();
-							ldm.start();
-						}
-					}
-				});
+		contourLinesLayer.setVisible(false);
+		shadedContoursLayer.setVisible(false);
+		poisLayer.setVisible(false);
+		mapView.addLayer(contourLinesLayer);
+		mapView.addLayer(shadedContoursLayer);
+		mapView.addLayer(poisLayer);
 	}
 	
 	protected void onPause(){
@@ -86,6 +85,10 @@ public class StevensPointFlowage extends Activity {
 			showInfo();
 			return true;
 		}
+		else if(id == R.id.action_locate){
+			showLocation();
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 	
@@ -94,8 +97,10 @@ public class StevensPointFlowage extends Activity {
 	public void showPopup(){
 		View menuItemView = findViewById(R.id.action_addlayer);
 		PopupMenu popup = new PopupMenu(this, menuItemView);
-		MenuInflater inflate = popup.getMenuInflater();
-		inflate.inflate(R.menu.popup, popup.getMenu());
+		
+		MenuInflater menuInflater = popup.getMenuInflater();
+		menuInflater.inflate(R.menu.popup, popup.getMenu());
+		
 		//Add on click listener for the pop menu items
 		popup.setOnMenuItemClickListener(new OnMenuItemClickListener(){
 			@Override
@@ -108,19 +113,25 @@ public class StevensPointFlowage extends Activity {
 				//and invisible if not checked
 				if(id == R.id.contours){
 					layersChecked[0]=item.isChecked();
-					if(item.isChecked())
-					{
-						contoursLayer.setVisible(true);
+					if(item.isChecked()){
+						contourLinesLayer.setVisible(true);
+						shadedContoursLayer.setVisible(true);
 					}
-					else
-					{
-						contoursLayer.setVisible(false);
+					else{
+						contourLinesLayer.setVisible(false);
+						shadedContoursLayer.setVisible(false);
 					}
 				}
-				if(id == R.id.pois){
+				else if(id == R.id.pois){
 					layersChecked[1]=item.isChecked();
+					if(item.isChecked()){
+						poisLayer.setVisible(true);
+					}
+					else{
+						poisLayer.setVisible(false);
+					}
 				}
-				if(id == R.id.structures){
+				else if(id == R.id.structures){
 					layersChecked[2]=item.isChecked();
 				}
 				return false;
@@ -132,11 +143,11 @@ public class StevensPointFlowage extends Activity {
 			MenuItem item = (MenuItem) popupMenu.findItem(R.id.contours);
 			item.setChecked(true);
 		}
-		if(layersChecked[1]){
+		else if(layersChecked[1]){
 			MenuItem item = (MenuItem) popupMenu.findItem(R.id.pois);
 			item.setChecked(true);
 		}
-		if(layersChecked[2]){
+		else if(layersChecked[2]){
 			MenuItem item = (MenuItem) popupMenu.findItem(R.id.structures);
 			item.setChecked(true);
 		}
@@ -147,6 +158,12 @@ public class StevensPointFlowage extends Activity {
 	public void showInfo(){
 		Intent newActivity = new Intent(StevensPointFlowage.this, Information.class);
 		startActivity(newActivity);
+	}
+	
+	//Show current device location on Map
+	public void showLocation(){
+		LocationDisplayManager ldm = mapView.getLocationDisplayManager();
+		ldm.start();
 	}
 	
 }

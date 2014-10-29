@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         mapoptions.MapType="SATELLITE"
-        initExtent = "-1.3296373526814876E7 3930962.41823043 -1.2807176545789773E7 4201243.7502468005">
+        initExtent = "-9979655.78123814 5549320.582567641 -9971913.850639945 5551454.186834849">
 	</com.esri.android.map.MapView>
 
 </RelativeLayout>
