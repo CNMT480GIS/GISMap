@@ -5,6 +5,7 @@ import com.esri.android.map.MapView;
 import com.esri.android.map.ags.ArcGISDynamicMapServiceLayer;
 import com.esri.android.map.ags.ArcGISFeatureLayer;
 import com.esri.android.map.ags.ArcGISFeatureLayer.MODE;
+import com.esri.android.map.ags.ArcGISLayerInfo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,14 +26,11 @@ public class StevensPointFlowage extends Activity {
 	boolean[] layersChecked = new boolean[3];
 	
 	//Layers, Set up layers URLs and create layers objects
-	String contourLinesURL = "https://gissrv4.uwsp.edu/publisher/rest/services/SPFL_MapServer_trial3/MapServer/1";
-	ArcGISFeatureLayer contourLinesLayer = new ArcGISFeatureLayer(contourLinesURL, MODE.ONDEMAND);
-	
-	String shadedContoursURL = "https://gissrv4.uwsp.edu/publisher/rest/services/SPFL_MapServer_trial3/MapServer/2";
-	ArcGISFeatureLayer shadedContoursLayer = new ArcGISFeatureLayer(shadedContoursURL, MODE.ONDEMAND);
-	
 	String poisURL = "https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer/0";
 	ArcGISFeatureLayer poisLayer = new ArcGISFeatureLayer(poisURL, MODE.ONDEMAND);
+	
+	ArcGISDynamicMapServiceLayer allLayers = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{0});
+	ArcGISLayerInfo[] layers = allLayers.getAllLayers();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +39,7 @@ public class StevensPointFlowage extends Activity {
 		
 		mapView = (MapView)findViewById(R.id.map);
 		//Add contours layer to map and set the initial value to invisible
-		contourLinesLayer.setVisible(false);
-		shadedContoursLayer.setVisible(false);
-		poisLayer.setVisible(false);
-		mapView.addLayer(contourLinesLayer);
-		mapView.addLayer(shadedContoursLayer);
-		mapView.addLayer(poisLayer);
+		mapView.addLayer(allLayers);
 	}
 	
 	protected void onPause(){
@@ -114,21 +107,19 @@ public class StevensPointFlowage extends Activity {
 				if(id == R.id.contours){
 					layersChecked[0]=item.isChecked();
 					if(item.isChecked()){
-						contourLinesLayer.setVisible(true);
-						shadedContoursLayer.setVisible(true);
+
 					}
 					else{
-						contourLinesLayer.setVisible(false);
-						shadedContoursLayer.setVisible(false);
+
 					}
 				}
 				else if(id == R.id.pois){
 					layersChecked[1]=item.isChecked();
 					if(item.isChecked()){
-						poisLayer.setVisible(true);
+						layers[0].setVisible(true);
 					}
 					else{
-						poisLayer.setVisible(false);
+						layers[0].setVisible(false);
 					}
 				}
 				else if(id == R.id.structures){
