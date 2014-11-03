@@ -17,4 +17,10 @@
     android:title="@string/structures"
     android:checkable="true"/>
 
+<item
+    android:id="@+id/boundaries"
+    android:showAsAction="ifRoom"
+    android:title="@string/boundaries"
+    android:checkable="true"/>
+
 </menu>

@@ -10,8 +10,9 @@
     <string name="action_navigate">Navigate</string>
     <string name="action_information">Information</string>
     <string name="contours">Contours</string>
-    <string name="pois">POIs</string>
+    <string name="pois">Points of Interest</string>
     <string name="structures">Structures</string>
+    <string name="boundaries">Municipal Boundaries</string>
 
     <color name="blue">#82b5ba</color>
 

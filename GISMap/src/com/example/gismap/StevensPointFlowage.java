@@ -5,7 +5,6 @@ import com.esri.android.map.MapView;
 import com.esri.android.map.ags.ArcGISDynamicMapServiceLayer;
 import com.esri.android.map.ags.ArcGISFeatureLayer;
 import com.esri.android.map.ags.ArcGISFeatureLayer.MODE;
-import com.esri.android.map.ags.ArcGISLayerInfo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,14 +22,16 @@ public class StevensPointFlowage extends Activity {
 	MapView mapView;
 	
 	//Boolean array for layers to properly display checkboxes in popup menu
-	boolean[] layersChecked = new boolean[3];
+	boolean[] layersChecked = new boolean[4];
 	
 	//Layers, Set up layers URLs and create layers objects
 	String poisURL = "https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer/0";
 	ArcGISFeatureLayer poisLayer = new ArcGISFeatureLayer(poisURL, MODE.ONDEMAND);
 	
-	ArcGISDynamicMapServiceLayer allLayers = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{0});
-	ArcGISLayerInfo[] layers = allLayers.getAllLayers();
+	ArcGISDynamicMapServiceLayer poiLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{0});
+	ArcGISDynamicMapServiceLayer contourLinesLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{1});
+	ArcGISDynamicMapServiceLayer contourShadesLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{2});
+	ArcGISDynamicMapServiceLayer boundariesLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{3});
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,17 @@ public class StevensPointFlowage extends Activity {
 		
 		mapView = (MapView)findViewById(R.id.map);
 		//Add contours layer to map and set the initial value to invisible
-		mapView.addLayer(allLayers);
+		poiLayer.setVisible(false);
+		mapView.addLayer(poiLayer);
+		
+		contourShadesLayer.setVisible(false);
+		mapView.addLayer(contourShadesLayer);
+		
+		contourLinesLayer.setVisible(false);
+		mapView.addLayer(contourLinesLayer);
+		
+		boundariesLayer.setVisible(false);
+		mapView.addLayer(boundariesLayer);
 	}
 	
 	protected void onPause(){
@@ -107,23 +118,34 @@ public class StevensPointFlowage extends Activity {
 				if(id == R.id.contours){
 					layersChecked[0]=item.isChecked();
 					if(item.isChecked()){
-
+						contourLinesLayer.setVisible(true);
+						contourShadesLayer.setVisible(true);
 					}
 					else{
-
+						contourLinesLayer.setVisible(false);
+						contourShadesLayer.setVisible(false);
 					}
 				}
 				else if(id == R.id.pois){
 					layersChecked[1]=item.isChecked();
 					if(item.isChecked()){
-						layers[0].setVisible(true);
+						poiLayer.setVisible(true);
 					}
 					else{
-						layers[0].setVisible(false);
+						poiLayer.setVisible(false);
 					}
 				}
 				else if(id == R.id.structures){
 					layersChecked[2]=item.isChecked();
+				}
+				else if(id == R.id.boundaries){
+					layersChecked[3]=item.isChecked();
+					if(item.isChecked()){
+						boundariesLayer.setVisible(true);
+					}
+					else{
+						boundariesLayer.setVisible(false);
+					}
 				}
 				return false;
 			}
@@ -140,6 +162,10 @@ public class StevensPointFlowage extends Activity {
 		}
 		else if(layersChecked[2]){
 			MenuItem item = (MenuItem) popupMenu.findItem(R.id.structures);
+			item.setChecked(true);
+		}
+		else if(layersChecked[3]){
+			MenuItem item = (MenuItem) popupMenu.findItem(R.id.boundaries);
 			item.setChecked(true);
 		}
 		popup.show();
