@@ -30,8 +30,7 @@ public class MainActivity extends Activity {
     mainListView = (ListView) findViewById( R.id.mainListView );  
   
     // Create and populate a List of waterbodies.  
-    String[] waterbodies = new String[] { "Stevens Point Flowage", "Wisconsin River", "Little Plover River", 
-                                      "Mississippi River", "Lake Dubay"};    
+    String[] waterbodies = new String[] { "Stevens Point Flowage", "Pike Lake", "Lake Wausau"};    
     ArrayList<String> waterbodyList = new ArrayList<String>();  
     waterbodyList.addAll( Arrays.asList(waterbodies) );  
       

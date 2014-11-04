@@ -8,8 +8,9 @@
         android:id="@+id/map"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        mapoptions.MapType="TOPO"
-        initExtent = "-9979655.78123814 5549320.582567641 -9971913.850639945 5551454.186834849">
+        mapoptions.MapType="SATELLITE"
+        mapoptions.center="44.544832, -89.617538"
+        mapoptions.ZoomLevel="15">
 	</com.esri.android.map.MapView>
 
 </RelativeLayout>
