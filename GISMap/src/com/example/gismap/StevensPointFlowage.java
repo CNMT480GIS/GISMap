@@ -29,8 +29,7 @@ public class StevensPointFlowage extends Activity {
 	ArcGISFeatureLayer poisLayer = new ArcGISFeatureLayer(poisURL, MODE.ONDEMAND);
 	
 	ArcGISDynamicMapServiceLayer poiLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{0});
-	ArcGISDynamicMapServiceLayer contourLinesLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{1});
-	ArcGISDynamicMapServiceLayer contourShadesLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{2});
+	ArcGISDynamicMapServiceLayer contourLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{1,2});
 	ArcGISDynamicMapServiceLayer boundariesLayer = new ArcGISDynamicMapServiceLayer("https://gissrv4.uwsp.edu/public/rest/services/SPFL_MapServer_trial3/MapServer", new int[]{3});
 	
 	@Override
@@ -40,14 +39,11 @@ public class StevensPointFlowage extends Activity {
 		
 		mapView = (MapView)findViewById(R.id.map);
 		//Add contours layer to map and set the initial value to invisible
+		contourLayer.setVisible(false);
+		mapView.addLayer(contourLayer);
+		
 		poiLayer.setVisible(false);
 		mapView.addLayer(poiLayer);
-		
-		contourShadesLayer.setVisible(false);
-		mapView.addLayer(contourShadesLayer);
-		
-		contourLinesLayer.setVisible(false);
-		mapView.addLayer(contourLinesLayer);
 		
 		boundariesLayer.setVisible(false);
 		mapView.addLayer(boundariesLayer);
@@ -118,12 +114,10 @@ public class StevensPointFlowage extends Activity {
 				if(id == R.id.contours){
 					layersChecked[0]=item.isChecked();
 					if(item.isChecked()){
-						contourLinesLayer.setVisible(true);
-						contourShadesLayer.setVisible(true);
+						contourLayer.setVisible(true);
 					}
 					else{
-						contourLinesLayer.setVisible(false);
-						contourShadesLayer.setVisible(false);
+						contourLayer.setVisible(false);
 					}
 				}
 				else if(id == R.id.pois){
@@ -156,15 +150,15 @@ public class StevensPointFlowage extends Activity {
 			MenuItem item = (MenuItem) popupMenu.findItem(R.id.contours);
 			item.setChecked(true);
 		}
-		else if(layersChecked[1]){
+		if(layersChecked[1]){
 			MenuItem item = (MenuItem) popupMenu.findItem(R.id.pois);
 			item.setChecked(true);
 		}
-		else if(layersChecked[2]){
+		if(layersChecked[2]){
 			MenuItem item = (MenuItem) popupMenu.findItem(R.id.structures);
 			item.setChecked(true);
 		}
-		else if(layersChecked[3]){
+		if(layersChecked[3]){
 			MenuItem item = (MenuItem) popupMenu.findItem(R.id.boundaries);
 			item.setChecked(true);
 		}
