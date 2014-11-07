@@ -49,6 +49,13 @@ public class MainActivity extends Activity {
     		case 0: Intent newActivity = new Intent(MainActivity.this, StevensPointFlowage.class);
     		startActivity(newActivity);
     		break;
+    		/*case 1:Intent newActivity1 = new Intent(MainActivity.this, PikeLake.class);
+    		startActivity(newActivity1);
+    		break;
+    		*/
+    		case 2: Intent newActivity2 = new Intent(MainActivity.this, LakeWausau.class);
+    		startActivity(newActivity2);
+    		break;
     		}
     	}
     });

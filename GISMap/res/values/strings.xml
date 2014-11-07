@@ -14,6 +14,11 @@
     <string name="pois">Points of Interest</string>
     <string name="structures">Structures</string>
     <string name="boundaries">Municipal Boundaries</string>
+    <string name="title_activity_lake_wausau">LakeWausau</string>
+    
+    <string name="local_tpk">Lake_Wausau_Map.tpk</string>
+    <string name="offline_dir">ArcGIS/samples/WI_Waterways</string>
+    
 
     <color name="blue">#FF0099CC</color>
 
@@ -26,9 +31,7 @@
     <string name="weather_snowy">&#xf01b;</string>
     <string name="weather_thunder">&#xf01e;</string>
     <string name="weather_drizzle">&#xf01c;</string>
-     
     <string name="place_not_found">Sorry, no weather data found.</string>
-    
     <string name="accept">Accept</string>
     <string name="eula_string">COPYRIGHTS:
  
@@ -77,5 +80,6 @@
 	\n\nThe software and accompanying documentation may not be provided by a \"Backup Service\" or any other vendor
 	which does not provide an original package as composed of GISMap, including but not limited to all original
 	distribution media, documentation, registration cards, and insertions.</string>
+   
 
 </resources>
