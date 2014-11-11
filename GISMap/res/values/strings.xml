@@ -20,7 +20,7 @@
     <string name="local_tpk">Lake_Wausau_Map.tpk</string>
     <string name="offline_dir">ArcGIS/samples/WI_Waterways</string>
 
-    <color name="blue">#FF0099CC</color>
+    <color name="blue">#FF82B5BA</color>
 
     <string name="title_activity_information">Information</string>
     <string name="weather_sunny">&#xf00d;</string>
