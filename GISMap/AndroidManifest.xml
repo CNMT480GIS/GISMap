@@ -43,6 +43,10 @@
             android:name=".LakeWausau"
             android:label="@string/title_activity_lake_wausau" >
         </activity>
+        <activity
+            android:name=".PikeLake"
+            android:label="@string/title_activity_pike_lake" >
+        </activity>
     </application>
 
 </manifest>

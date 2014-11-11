@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GISMap</string>
+    <string name="app_name">Wisconsin Waterways</string>
     <string name="appID">11111</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -10,15 +10,15 @@
     <string name="action_locate">Locate</string>
     <string name="action_navigate">Navigate</string>
     <string name="action_information">Information</string>
+    <string name="action_camera">Camera</string>
     <string name="contours">Contours</string>
     <string name="pois">Points of Interest</string>
     <string name="structures">Structures</string>
     <string name="boundaries">Municipal Boundaries</string>
-    <string name="title_activity_lake_wausau">LakeWausau</string>
-    
+    <string name="title_activity_pike_lake">Pike Lake</string>
+    <string name="title_activity_lake_wausau">Lake Wausau</string>
     <string name="local_tpk">Lake_Wausau_Map.tpk</string>
     <string name="offline_dir">ArcGIS/samples/WI_Waterways</string>
-    
 
     <color name="blue">#FF0099CC</color>
 
@@ -80,6 +80,6 @@
 	\n\nThe software and accompanying documentation may not be provided by a \"Backup Service\" or any other vendor
 	which does not provide an original package as composed of GISMap, including but not limited to all original
 	distribution media, documentation, registration cards, and insertions.</string>
-   
+    
 
 </resources>

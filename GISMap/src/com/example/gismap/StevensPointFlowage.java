@@ -15,8 +15,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class StevensPointFlowage extends Activity {
+	
+	//Set static variable for camera request code
+	private static final int CAMERA_REQUEST = 100;
 	
 	//Map Object
 	MapView mapView;
@@ -88,6 +92,10 @@ public class StevensPointFlowage extends Activity {
 		else if(id == R.id.action_locate){
 			showLocation();
 			return true;
+		}
+		else if(id == R.id.action_camera){
+			Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+			startActivityForResult(cameraIntent, CAMERA_REQUEST);
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -163,6 +171,15 @@ public class StevensPointFlowage extends Activity {
 			item.setChecked(true);
 		}
 		popup.show();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(requestCode == CAMERA_REQUEST){
+			if(resultCode == RESULT_OK){
+				Toast.makeText(this, "Image Saved", Toast.LENGTH_LONG).show();
+			}
+		}
 	}
 	
 	//Redirect to info screen
